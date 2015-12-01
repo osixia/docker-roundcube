@@ -1,7 +1,7 @@
 FROM osixia/web-baseimage:0.1.6
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
-# phpMyAdmin version
+# roundcube version
 ENV ROUNDCUBE_VERSION 1.1.3
 ENV ROUNDCUBE_SHA256 f0d3e0f86cded38c02e0dfb3b5b875d48dd873865593ab3759e04b5fe056a9d9
 
@@ -35,8 +35,14 @@ RUN apt-get update \
 			 php5-json \
 			 php5-mcrypt \
 			 php5-mysql \
+       php5-pgsql \
+       php5-sqlite \
        php5-intl \
        php5-ldap \
+       php5-enchant \
+       aspell \
+       aspell-uk \
+       aspell-fr \
 			 curl \
 		&& curl -o roundcube.tar.gz -SL http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
 		&& echo "$ROUNDCUBE_SHA256 *roundcube.tar.gz" | sha256sum -c - \

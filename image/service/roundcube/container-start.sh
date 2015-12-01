@@ -5,7 +5,7 @@ FIRST_START_DONE="/etc/docker-roundcube-first-start-done"
 # container first start
 if [ ! -e "$FIRST_START_DONE" ]; then
 
-  # create phpMyAdmin vhost
+  # create roundcube vhost
   if [ "${ROUNDCUBE_HTTPS,,}" == "true" ]; then
 
     # check certificat and key or create it
@@ -22,10 +22,29 @@ if [ ! -e "$FIRST_START_DONE" ]; then
     a2ensite roundcube
   fi
 
-  # phpMyAdmin directory is empty, we use the bootstrap
+  # roundcube directory is empty, we use the bootstrap
   if [ ! "$(ls -A /var/www/roundcube)" ]; then
     cp -R /var/www/roundcube_bootstrap/* /var/www/roundcube
     rm -rf /var/www/roundcube_bootstrap
+  fi
+
+  if [ -e "/container/service/roundcube/assets/config.inc.php" ]; then
+    echo "Container config file /container/service/roundcube/assets/config.inc.php found"
+
+    if [ -e "/var/www/roundcube/config/config.inc.php" ]; then
+      echo "RoundCube config file /var/www/roundcube/config/config.inc.php already exists "
+      echo "-> Ignore container config file"
+    else
+      echo "RoundCube config file /var/www/roundcube/config/config.inc.php not found"
+      echo "-> Copy container config file to config file /var/www/roundcube/config/config.inc.php"
+      cp -f /container/service/roundcube/assets/config.inc.php /var/www/roundcube/config/config.inc.php
+    fi
+  fi
+
+  if [ -e "/var/www/roundcube/config/config.inc.php" ]; then
+    echo "RoundCube config file /var/www/roundcube/config/config.inc.php exists "
+    echo "-> Delete installer"
+    rm -rf /var/www/roundcube/installer
   fi
 
   touch $FIRST_START_DONE
