@@ -10,7 +10,7 @@
 // Currently supported db_providers: mysql, pgsql, sqlite, mssql or sqlsrv
 // For examples see http://pear.php.net/manual/en/package.database.mdb2.intro-dsn.php
 // NOTE: for SQLite use absolute path: 'sqlite:////full/path/to/sqlite.db?mode=0646'
-$config['db_dsnw'] = 'mysql://roundcube:password@172.17.0.6/roundcubemail';
+$config['db_dsnw'] = 'mysql://roundcube:password@172.17.0.3/roundcubemail';
 
 // log driver:  'syslog' or 'file'.
 $config['log_driver'] = 'syslog';
@@ -75,7 +75,7 @@ $config['des_key'] = 'b1e46cbab378e6ce83e5e966';
 // PLUGINS
 // ----------------------------------
 // List of active plugins (in plugins/ directory)
-$config['plugins'] = array('attachment_reminder', 'emoticons', 'enigma', 'example_addressbook', 'hide_blockquote', 'managesieve', 'markasjunk', 'new_user_identity', 'zipdownload');
+$config['plugins'] = array('attachment_reminder', 'emoticons', 'hide_blockquote', 'managesieve', 'markasjunk', 'new_user_identity', 'zipdownload', 'jqueryui', 'newmail_notifier');
 
 // Make use of the built-in spell checker. It is based on GoogieSpell.
 // Since Google only accepts connections over https your PHP installatation
@@ -92,7 +92,10 @@ $config['enable_spellcheck'] = true;
 // You can connect to any other googie-compliant service by setting 'spellcheck_uri' accordingly.
 $config['spellcheck_engine'] = 'enchant';
 
-$config['spellcheck_languages'] = array('fr','uk');
+// These languages can be selected for spell checking.
+// Configure as a PHP style hash array: array('en'=>'English', 'de'=>'Deutsch');
+// Leave empty for default set of available language.
+$config['spellcheck_languages'] = array('fr','en');
 
 $config['smtp_conn_options'] = array(
    'ssl'         => array(
@@ -109,3 +112,38 @@ $config['smtp_conn_options'] = array(
       'allow_self_signed' => true,
     ),
   );
+
+// default setting if preview pane is enabled
+$config['preview_pane'] = true;
+
+// compose html formatted messages by default
+// 0 - never, 1 - always, 2 - on reply to HTML message, 3 - on forward or reply to HTML message
+$config['htmleditor'] = 3;
+
+// save compose message every 300 seconds (5min)
+$config['draft_autosave'] = 60;
+
+// When replying:
+// -1 - don't cite the original message
+// 0  - place cursor below the original message
+// 1  - place cursor above original message (top posting)
+$config['reply_mode'] = 1;
+
+// Enables display of email address with name instead of a name (and address in title)
+$config['message_show_email'] = true;
+
+// use this format for date display (date or strftime format)
+$config['date_format'] = 'Y/m/d';
+
+// This domain will be used to form e-mail addresses of new users
+// Specify an array with 'host' => 'domain' values to support multiple hosts
+// Supported replacement variables:
+// %h - user's IMAP hostname
+// %n - http hostname ($_SERVER['SERVER_NAME'])
+// %d - domain (http hostname without the first part)
+// %z - IMAP domain (IMAP hostname without the first part)
+// For example %n = mail.domain.tld, %t = domain.tld
+$config['mail_domain'] = 'osixia.net';
+
+
+$config['enable_installer'] = true;

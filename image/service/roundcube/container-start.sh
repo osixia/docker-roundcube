@@ -24,7 +24,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
 
   # roundcube directory is empty, we use the bootstrap
   if [ ! "$(ls -A /var/www/roundcube)" ]; then
-    cp -R /var/www/roundcube_bootstrap/* /var/www/roundcube
+    cp -R /var/www/roundcube_bootstrap/. /var/www/roundcube
     rm -rf /var/www/roundcube_bootstrap
   fi
 
@@ -41,7 +41,8 @@ if [ ! -e "$FIRST_START_DONE" ]; then
     fi
   fi
 
-  if [ -e "/var/www/roundcube/config/config.inc.php" ]; then
+  echo "ROUNDCUBE_KEEP_INSTALLER=$ROUNDCUBE_KEEP_INSTALLER"
+  if [ -e "/var/www/roundcube/config/config.inc.php" ] && [ "${ROUNDCUBE_KEEP_INSTALLER,,}" == "false" ]; then
     echo "RoundCube config file /var/www/roundcube/config/config.inc.php exists "
     echo "-> Delete installer"
     rm -rf /var/www/roundcube/installer

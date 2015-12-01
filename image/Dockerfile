@@ -41,7 +41,7 @@ RUN apt-get update \
        php5-ldap \
        php5-enchant \
        aspell \
-       aspell-uk \
+       aspell-en \
        aspell-fr \
 			 curl \
 		&& curl -o roundcube.tar.gz -SL http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
