@@ -145,6 +145,14 @@ $config['date_format'] = 'd/m/Y';
 // For example %n = mail.domain.tld, %t = domain.tld
 $config['mail_domain'] = 'osixia.net';
 
+// Default messages listing mode. One of 'threads' or 'list'.
+$config['default_list_mode'] = 'threads';
+
+// 0 - Do not expand threads
+// 1 - Expand all threads automatically
+// 2 - Expand only threads with unread messages
+$config['autoexpand_threads'] = 2;
+
 //
 // Plugins config
 //
