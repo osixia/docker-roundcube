@@ -10,7 +10,7 @@
 // Currently supported db_providers: mysql, pgsql, sqlite, mssql or sqlsrv
 // For examples see http://pear.php.net/manual/en/package.database.mdb2.intro-dsn.php
 // NOTE: for SQLite use absolute path: 'sqlite:////full/path/to/sqlite.db?mode=0646'
-$config['db_dsnw'] = 'mysql://roundcube:password@172.17.0.3/roundcubemail';
+$config['db_dsnw'] = 'mysql://roundcube:password@172.17.0.4/roundcubemail';
 
 // log driver:  'syslog' or 'file'.
 $config['log_driver'] = 'syslog';
@@ -133,7 +133,7 @@ $config['reply_mode'] = 1;
 $config['message_show_email'] = true;
 
 // use this format for date display (date or strftime format)
-$config['date_format'] = 'Y/m/d';
+$config['date_format'] = 'd/m/Y';
 
 // This domain will be used to form e-mail addresses of new users
 // Specify an array with 'host' => 'domain' values to support multiple hosts
@@ -145,5 +145,24 @@ $config['date_format'] = 'Y/m/d';
 // For example %n = mail.domain.tld, %t = domain.tld
 $config['mail_domain'] = 'osixia.net';
 
+//
+// Plugins config
+//
+$config['attachment_reminder'] = true;
+
+$config['newmail_notifier_basic'] = true;
+$config['newmail_notifier_desktop'] = true;
+
+$config['managesieve_host'] = 'mail.osixia.net';
+$config['managesieve_port'] = 4190;
+$config['managesieve_usetls'] = true;
+
+$config['managesieve_conn_options'] = array(
+    'ssl'         => array(
+      'verify_peer'  => false,
+      'verify_peer_name' => false,
+      'allow_self_signed' => true,
+    ),
+  );
 
 $config['enable_installer'] = true;
