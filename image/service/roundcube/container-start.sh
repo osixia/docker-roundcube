@@ -28,8 +28,8 @@ if [ ! -e "$FIRST_START_DONE" ]; then
     rm -rf /var/www/roundcube_bootstrap
   fi
 
-  if [ -e "/container/service/roundcube/assets/config.inc.php" ]; then
-    echo "Container config file /container/service/roundcube/assets/config.inc.php found"
+  if [ -e "/container/service/roundcube/assets/config/config.inc.php" ]; then
+    echo "Container config file /container/service/roundcube/assets/config/config.inc.php found"
 
     if [ -e "/var/www/roundcube/config/config.inc.php" ]; then
       echo "RoundCube config file /var/www/roundcube/config/config.inc.php already exists "
@@ -37,7 +37,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
     else
       echo "RoundCube config file /var/www/roundcube/config/config.inc.php not found"
       echo "-> Copy container config file to config file /var/www/roundcube/config/config.inc.php"
-      cp -f /container/service/roundcube/assets/config.inc.php /var/www/roundcube/config/config.inc.php
+      cp -f /container/service/roundcube/assets/config/config.inc.php /var/www/roundcube/config/config.inc.php
     fi
   fi
 
