@@ -40,6 +40,9 @@ RUN apt-get update \
        php5-intl \
        php5-ldap \
        php5-enchant \
+       php-pear \
+       php5-gd \
+       php-apc \
        aspell \
        aspell-en \
        aspell-fr \

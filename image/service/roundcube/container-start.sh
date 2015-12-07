@@ -24,8 +24,15 @@ if [ ! -e "$FIRST_START_DONE" ]; then
 
   # roundcube directory is empty, we use the bootstrap
   if [ ! "$(ls -A /var/www/roundcube)" ]; then
+
+    echo "Use bootstrap"
     cp -R /var/www/roundcube_bootstrap/. /var/www/roundcube
     rm -rf /var/www/roundcube_bootstrap
+
+    # add skins and plugins
+    cp -R /container/service/roundcube/assets/bootstrap/. /var/www/roundcube
+    rm -rf /container/service/roundcube/assets/bootstrap
+
   fi
 
   if [ -e "/container/service/roundcube/assets/config.inc.php" ]; then
