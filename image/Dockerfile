@@ -46,6 +46,7 @@ RUN apt-get update \
        aspell \
        aspell-en \
        aspell-fr \
+       ca-certificates \
 			 curl \
 		&& curl -o roundcube.tar.gz -SL http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
 		&& echo "$ROUNDCUBE_SHA256 *roundcube.tar.gz" | sha256sum -c - \
