@@ -44,7 +44,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
     else
       echo "RoundCube config file /var/www/roundcube/config/config.inc.php not found"
       echo "-> Copy container config file to config file /var/www/roundcube/config/config.inc.php"
-      cp -f /container/service/roundcube/assets/config/config.inc.php /var/www/roundcube/config/config.inc.php
+      ln -sf /container/service/roundcube/assets/config/config.inc.php /var/www/roundcube/config/config.inc.php
     fi
   fi
 
