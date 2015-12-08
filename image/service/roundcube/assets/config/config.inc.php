@@ -56,7 +56,8 @@ $config['smtp_user'] = '%u';
 // will use the current user's password for login
 $config['smtp_pass'] = '%p';
 
-
+// Connection scket context options
+// See http://php.net/manual/en/context.ssl.php
 $config['smtp_conn_options'] = array(
    'ssl'         => array(
      'verify_peer'  => false,
@@ -65,6 +66,8 @@ $config['smtp_conn_options'] = array(
    ),
  );
 
+ // Connection scket context options
+ // See http://php.net/manual/en/context.ssl.php
  $config['imap_conn_options'] = array(
     'ssl'         => array(
       'verify_peer'  => false,
@@ -97,7 +100,7 @@ $config['des_key'] = 'b1e46cbab378e6ce83e5e966';
 // PLUGINS
 // ----------------------------------
 // List of active plugins (in plugins/ directory)
-$config['plugins'] = array('attachment_reminder', 'emoticons', 'hide_blockquote', 'managesieve', 'markasjunk', 'new_user_identity', 'zipdownload', 'jqueryui', 'newmail_notifier');
+$config['plugins'] = array('attachment_reminder', 'emoticons', 'hide_blockquote', 'managesieve', 'markasjunk', 'zipdownload', 'jqueryui', 'newmail_notifier', 'identity_select');
 
 // Make use of the built-in spell checker. It is based on GoogieSpell.
 // Since Google only accepts connections over https your PHP installatation
@@ -122,15 +125,40 @@ $config['spellcheck_languages'] = array('fr','en');
 //
 // Plugins config
 //
+
+// Enables basic attachment reminder
 $config['attachment_reminder'] = true;
 
+// Enables basic notification
 $config['newmail_notifier_basic'] = true;
+
+// Enables desktop notification
 $config['newmail_notifier_desktop'] = true;
 
+// managesieve server address, default is localhost.
+// Replacement variables supported in host name:
+// %h - user's IMAP hostname
+// %n - http hostname ($_SERVER['SERVER_NAME'])
+// %d - domain (http hostname without the first part)
+// For example %n = mail.domain.tld, %d = domain.tld
 $config['managesieve_host'] = 'mail.example.org';
+
+// managesieve server port. When empty the port will be determined automatically
+// using getservbyname() function, with 4190 as a fallback.
 $config['managesieve_port'] = 4190;
+
+// use or not TLS for managesieve server connection
+// Note: tls:// prefix in managesieve_host is also supported
 $config['managesieve_usetls'] = true;
 
+// Enables separate management interface for vacation responses (out-of-office)
+// 0 - no separate section (default),
+// 1 - add Vacation section,
+// 2 - add Vacation section, but hide Filters section
+$config['managesieve_vacation'] = 1;
+
+// Connection scket context options
+// See http://php.net/manual/en/context.ssl.php
 $config['managesieve_conn_options'] = array(
     'ssl'         => array(
       'verify_peer'  => false,
