@@ -12,6 +12,12 @@
 // NOTE: for SQLite use absolute path: 'sqlite:////full/path/to/sqlite.db?mode=0646'
 $config['db_dsnw'] = 'mysql://roundcube:password@bdd.example.org/roundcubemail?key=/container/service/mariadb-client/assets/certs/cert.key&cert=/container/service/mariadb-client/assets/certs/cert.crt';
 
+// log driver:  'syslog' or 'file'.
+$config['log_driver'] = 'syslog';
+
+// Log sent messages to <log_dir>/sendmail or to syslog
+$config['smtp_log'] = false;
+
 // ----------------------------------
 // IMAP
 // ----------------------------------
@@ -27,6 +33,7 @@ $config['db_dsnw'] = 'mysql://roundcube:password@bdd.example.org/roundcubemail?k
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
+//$config['default_host'] = array('tls://mail.osixia.net' => 'Osixia', 'tls://mail.syndis.fr' => 'Syndis');
 $config['default_host'] = 'tls://mail.example.org';
 
 // ----------------------------------
@@ -42,7 +49,7 @@ $config['default_host'] = 'tls://mail.example.org';
 // %d - domain (http hostname $_SERVER['HTTP_HOST'] without the first part)
 // %z - IMAP domain (IMAP hostname without the first part)
 // For example %n = mail.domain.tld, %t = domain.tld
-$config['smtp_server'] = 'tls://mail.example.org';
+$config['smtp_server'] = 'tls://%h';
 
 // SMTP port (default is 25; use 587 for STARTTLS or 465 for the
 // deprecated SSL over SMTP (aka SMTPS))
@@ -56,36 +63,6 @@ $config['smtp_user'] = '%u';
 // will use the current user's password for login
 $config['smtp_pass'] = '%p';
 
-// Connection scket context options
-// See http://php.net/manual/en/context.ssl.php
-$config['smtp_conn_options'] = array(
-   'ssl'         => array(
-     'verify_peer'  => false,
-     'verify_peer_name' => false,
-     'allow_self_signed' => true,
-   ),
- );
-
- // Connection scket context options
- // See http://php.net/manual/en/context.ssl.php
- $config['imap_conn_options'] = array(
-    'ssl'         => array(
-      'verify_peer'  => false,
-      'verify_peer_name' => false,
-      'allow_self_signed' => true,
-    ),
-  );
-
-// This domain will be used to form e-mail addresses of new users
-// Specify an array with 'host' => 'domain' values to support multiple hosts
-// Supported replacement variables:
-// %h - user's IMAP hostname
-// %n - http hostname ($_SERVER['SERVER_NAME'])
-// %d - domain (http hostname without the first part)
-// %z - IMAP domain (IMAP hostname without the first part)
-// For example %n = mail.domain.tld, %t = domain.tld
-$config['mail_domain'] = 'example.org';
-
 // provide an URL where a user can get support for this Roundcube installation
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
 $config['support_url'] = '';
@@ -93,8 +70,7 @@ $config['support_url'] = '';
 // this key is used to encrypt the users imap password which is stored
 // in the session record (and the client cookie if remember password is enabled).
 // please provide a string of exactly 24 chars.
-$config['des_key'] = 'b1e46cbab378e6ce83e5e966';
-
+$config['des_key'] = 'b1e46cjpop78e6ce83e5e966';
 
 // ----------------------------------
 // PLUGINS
@@ -122,50 +98,27 @@ $config['spellcheck_engine'] = 'enchant';
 // Leave empty for default set of available language.
 $config['spellcheck_languages'] = array('fr','en');
 
-//
-// Plugins config
-//
-
-// Enables basic attachment reminder
-$config['attachment_reminder'] = true;
-
-// Enables basic notification
-$config['newmail_notifier_basic'] = true;
-
-// Enables desktop notification
-$config['newmail_notifier_desktop'] = true;
-
-// managesieve server address, default is localhost.
-// Replacement variables supported in host name:
-// %h - user's IMAP hostname
-// %n - http hostname ($_SERVER['SERVER_NAME'])
-// %d - domain (http hostname without the first part)
-// For example %n = mail.domain.tld, %d = domain.tld
-$config['managesieve_host'] = 'mail.example.org';
-
-// managesieve server port. When empty the port will be determined automatically
-// using getservbyname() function, with 4190 as a fallback.
-$config['managesieve_port'] = 4190;
-
-// use or not TLS for managesieve server connection
-// Note: tls:// prefix in managesieve_host is also supported
-$config['managesieve_usetls'] = true;
-
-// Enables separate management interface for vacation responses (out-of-office)
-// 0 - no separate section (default),
-// 1 - add Vacation section,
-// 2 - add Vacation section, but hide Filters section
-$config['managesieve_vacation'] = 1;
+/*
+// Connection scket context options
+// See http://php.net/manual/en/context.ssl.php
+$config['smtp_conn_options'] = array(
+   'ssl'         => array(
+     'verify_peer'  => false,
+     'verify_peer_name' => false,
+     'allow_self_signed' => true,
+   ),
+ );
 
 // Connection scket context options
 // See http://php.net/manual/en/context.ssl.php
-$config['managesieve_conn_options'] = array(
+ $config['imap_conn_options'] = array(
     'ssl'         => array(
       'verify_peer'  => false,
       'verify_peer_name' => false,
       'allow_self_signed' => true,
     ),
   );
+*/
 
 // default setting if preview pane is enabled
 $config['preview_pane'] = true;
@@ -186,16 +139,48 @@ $config['reply_mode'] = 1;
 // Enables display of email address with name instead of a name (and address in title)
 $config['message_show_email'] = true;
 
+// use this format for date display (date or strftime format)
+//$config['date_format'] = 'd/m/Y';
+
+// use this format for detailed date/time formatting (derived from date_format and time_format)
+//$config['date_long'] = 'd/m/Y H:i';
+
 // skin name: folder from skins/
-$config['skin'] = 'chameleon-blue';
+//$config['skin'] = 'chameleon-blue';
 
 // if in your system 0 quota means no limit set this option to true
-$config['quota_zero_as_unlimited'] = true;
+//$config['quota_zero_as_unlimited'] = true;
 
 // Enables files upload indicator. Requires APC installed and enabled apc.rfc1867 option.
 // By default refresh time is set to 1 second. You can set this value to true
 // or any integer value indicating number of seconds.
 $config['upload_progress'] = true;
+
+// This domain will be used to form e-mail addresses of new users
+// Specify an array with 'host' => 'domain' values to support multiple hosts
+// Supported replacement variables:
+// %h - user's IMAP hostname
+// %n - http hostname ($_SERVER['SERVER_NAME'])
+// %d - domain (http hostname without the first part)
+// %z - IMAP domain (IMAP hostname without the first part)
+// For example %n = mail.domain.tld, %t = domain.tld
+$config['mail_domain'] = '%z';
+
+// Automatically add this domain to user names for login
+// Only for IMAP servers that require full e-mail addresses for login
+// Specify an array with 'host' => 'domain' values to support multiple hosts
+// Supported replacement variables:
+// %h - user's IMAP hostname
+// %n - hostname ($_SERVER['SERVER_NAME'])
+// %t - hostname without the first part
+// %d - domain (http hostname $_SERVER['HTTP_HOST'] without the first part)
+// %z - IMAP domain (IMAP hostname without the first part)
+// For example %n = mail.domain.tld, %t = domain.tld
+$config['username_domain'] = '%z';
+
+// Force domain configured in username_domain to be used for login.
+// Any domain in username will be replaced by username_domain.
+$config['username_domain_forced'] = true;
 
 // Default messages listing mode. One of 'threads' or 'list'.
 $config['default_list_mode'] = 'threads';
@@ -212,15 +197,56 @@ $config['autoexpand_threads'] = 2;
 // 2 - one identity with possibility to edit all params
 // 3 - one identity with possibility to edit all params but not email address
 // 4 - one identity with possibility to edit only signature
-$config['identities_level'] = 1;
+$config['identities_level'] = 0;
 
-// log driver:  'syslog' or 'file'.
-$config['log_driver'] = 'syslog';
-
-// Log sent messages to <log_dir>/sendmail or to syslog
-$config['smtp_log'] = false;
+// show address fields in this order
+// available placeholders: {street}, {locality}, {zipcode}, {country}, {region}
+//$config['address_template'] = '{street}<br/>{zipcode} {locality}<br/>{region} {country}';
 
 // Enables possibility to log in using email address from user identities
-$config['user_aliases'] = true;
+$config['user_aliases'] = false;
+
+//
+// Plugins config
+//
+
+// Enables basic attachment reminder
+$config['attachment_reminder'] = true;
+
+// Enables basic notification
+$config['newmail_notifier_basic'] = true;
+
+// Enables desktop notification
+$config['newmail_notifier_desktop'] = true;
+
+// managesieve server address, default is localhost.
+// Replacement variables supported in host name:
+// %h - user's IMAP hostname
+// %n - http hostname ($_SERVER['SERVER_NAME'])
+// %d - domain (http hostname without the first part)
+// For example %n = mail.domain.tld, %d = domain.tld
+$config['managesieve_host'] = 'tls://%h';
+
+// managesieve server port. When empty the port will be determined automatically
+// using getservbyname() function, with 4190 as a fallback.
+$config['managesieve_port'] = 4190;
+
+// Enables separate management interface for vacation responses (out-of-office)
+// 0 - no separate section (default),
+// 1 - add Vacation section,
+// 2 - add Vacation section, but hide Filters section
+$config['managesieve_vacation'] = 1;
+
+/*
+// Connection scket context options
+// See http://php.net/manual/en/context.ssl.php
+$config['managesieve_conn_options'] = array(
+    'ssl'         => array(
+      'verify_peer'  => false,
+      'verify_peer_name' => false,
+      'allow_self_signed' => true,
+    ),
+  );
+*/
 
 $config['enable_installer'] = true;
