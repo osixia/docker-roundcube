@@ -1,12 +1,13 @@
 NAME = osixia/roundcube
-VERSION = 0.1.1
-
-.PHONY: all build test tag_latest release
+VERSION = 0.1.2
 
 all: build
 
 build:
 	docker build -t $(NAME):$(VERSION) --rm image
+
+build-nocache:
+	docker build -t $(NAME):$(VERSION) --no-cache --rm image
 
 test:
 	env NAME=$(NAME) VERSION=$(VERSION) bats test/test.bats

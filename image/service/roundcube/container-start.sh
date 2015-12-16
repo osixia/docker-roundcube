@@ -13,7 +13,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
 
     # add CA certificat config if CA cert exists
     if [ -e "--ca-crt=/container/service/roundcube/assets/apache2/certs/$ROUNDCUBE_HTTPS_CA_CRT_FILENAME" ]; then
-      sed -i "s/#SSLCACertificateFile/SSLCACertificateFile/g" /container/service/roundcube/assets/apache2/roundcube-ssl.conf
+      sed -i --follow-symlinks "s/#SSLCACertificateFile/SSLCACertificateFile/g" /container/service/roundcube/assets/apache2/roundcube-ssl.conf
     fi
 
     a2ensite roundcube-ssl
@@ -44,7 +44,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
     else
       echo "RoundCube config file /var/www/roundcube/config/config.inc.php not found"
       echo "-> Copy container config file to config file /var/www/roundcube/config/config.inc.php"
-      ln -sf /container/service/roundcube/assets/config/config.inc.php /var/www/roundcube/config/config.inc.php
+      cp -f /container/service/roundcube/assets/config/config.inc.php /var/www/roundcube/config/config.inc.php
     fi
   fi
 
