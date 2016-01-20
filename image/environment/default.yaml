@@ -8,7 +8,7 @@ ROUNDCUBE_KEEP_INSTALLER: false
 
 # To use your custom certificat and key 2 options :
 # - add them in service/roundcube/assets/apache2/ssl and build the image
-# - or during docker run mount a data volume with thoses files to /container/service/roundcube/apache2/ssl
+# - or during docker run mount a data volume with those files to /container/service/roundcube/apache2/ssl
 ROUNDCUBE_HTTPS: true
 ROUNDCUBE_HTTPS_CRT_FILENAME: roundcube.crt
 ROUNDCUBE_HTTPS_KEY_FILENAME: roundcube.key
@@ -21,3 +21,5 @@ ROUNDCUBE_LDAP_CLIENT_TLS_REQCERT: demand
 ROUNDCUBE_LDAP_CLIENT_TLS_CA_CRT_FILENAME: ldap-ca.crt
 ROUNDCUBE_LDAP_CLIENT_TLS_CRT_FILENAME: ldap-client.crt
 ROUNDCUBE_LDAP_CLIENT_TLS_KEY_FILENAME: ldap-client.key
+
+ROUNDCUBE_CFSSL_PREFIX: roundcube
