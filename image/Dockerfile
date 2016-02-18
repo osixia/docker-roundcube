@@ -48,17 +48,17 @@ RUN apt-get update \
 		&& echo "$ROUNDCUBE_SHA256 *roundcube.tar.gz" | sha256sum -c - \
 		&& mkdir -p /var/www/roundcube_bootstrap /var/www/roundcube \
 		&& tar -xzf roundcube.tar.gz --strip 1 -C /var/www/roundcube_bootstrap \
-		&& apt-get remove -y --purge --auto-remove curl
+		&& apt-get remove -y --purge --auto-remove curl \
+    && rm roundcube.tar.gz \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add service directory to /container/service
 ADD service /container/service
 
-# Use baseimage install-service script and clean all
+# Use baseimage install-service script
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/install-service
-RUN /container/tool/install-service \
-		&& rm roundcube.tar.gz \
-		&& apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN /container/tool/install-service
 
 # Add default env variables
 ADD environment /container/environment/99-default
