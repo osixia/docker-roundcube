@@ -1,7 +1,7 @@
 # Apache
 ROUNDCUBE_SERVER_ADMIN: webmaster@example.org
 
-ROUNDCUBE_KEEP_INSTALLER: false
+ROUNDCUBE_KEEP_INSTALLER: true
 
 # Self signed certificat will be generated
 # if ROUNDCUBE_HTTPS is set to true and no certificat and key are provided.

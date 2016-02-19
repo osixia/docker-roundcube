@@ -44,17 +44,17 @@ if [ ! "$(ls -A /var/www/roundcube)" ]; then
 
 fi
 
+# if there is no config file link service config
+if [ ! -e "/var/www/roundcube/config/config.inc.php" ]; then
+  log-helper debug "link ${CONTAINER_SERVICE_DIR}/roundcube/assets/config.inc.php to /var/www/roundcube/config/config.inc.php"
+  ln -sf ${CONTAINER_SERVICE_DIR}/roundcube/assets/config.inc.php /var/www/roundcube/config/config.inc.php
+fi
+
 log-helper info "ROUNDCUBE_KEEP_INSTALLER=$ROUNDCUBE_KEEP_INSTALLER"
 if [ -e "/var/www/roundcube/config/config.inc.php" ] && [ "${ROUNDCUBE_KEEP_INSTALLER,,}" == "false" ]; then
   log-helper info "RoundCube config file /var/www/roundcube/config/config.inc.php exists "
   log-helper info "-> Delete installer"
   rm -rf /var/www/roundcube/installer
-fi
-
-# if there is no config file link service config
-if [ ! -e "/var/www/roundcube/config/config.inc.php" ]; then
-  log-helper debug  "link ${CONTAINER_SERVICE_DIR}/roundcube/assets/config.inc.php to /var/www/roundcube/config/config.inc.php"
-  ln -sf ${CONTAINER_SERVICE_DIR}/roundcube/assets/config.inc.php /var/www/roundcube/config/config.inc.php
 fi
 
 # Fix file permission
