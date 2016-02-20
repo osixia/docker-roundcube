@@ -40,7 +40,6 @@ if [ ! "$(ls -A /var/www/roundcube)" ]; then
 
   # add skins and plugins
   cp -R ${CONTAINER_SERVICE_DIR}/roundcube/assets/bootstrap/. /var/www/roundcube
-  rm -rf ${CONTAINER_SERVICE_DIR}/roundcube/assets/bootstrap
 
 fi
 
