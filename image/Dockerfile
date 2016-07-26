@@ -1,16 +1,12 @@
-FROM osixia/web-baseimage:0.1.7
+FROM osixia/web-baseimage:0.1.10
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # roundcube version
-ENV ROUNDCUBE_VERSION 1.1.3
-ENV ROUNDCUBE_SHA256 f0d3e0f86cded38c02e0dfb3b5b875d48dd873865593ab3759e04b5fe056a9d9
+ENV ROUNDCUBE_VERSION 1.2.0
+ENV ROUNDCUBE_SHA256 574895da03b5ad78eaf0843a78e0c0ab734a9327b4ba47b72405b768cb2854cc
 
 # MariaDB version
 ENV MARIADB_MAJOR 10.1
-
-# Use baseimage's init system.
-# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/run
-CMD ["/container/tool/run"]
 
 # Install apache2 and php5-fpm using osixia/baseimage utils
 # Caution: /container/tool/install-service-available arguments order is important
@@ -28,44 +24,44 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db 
 
 # Download, check integrity and unzip roundcube to /var/www/roundcube_bootstrap
 RUN apt-get update \
-		&& /container/tool/install-multiple-process-stack \
-		&& /container/tool/install-service-available apache2 php5-fpm ssl-helper-openssl \
+		&& /container/tool/add-multiple-process-stack \
+		&& /container/tool/add-service-available :apache2 :php5-fpm :cfssl \
 		&& LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-			 php-gettext \
-			 php5-json \
-			 php5-mcrypt \
-			 php5-mysql \
-       php5-pgsql \
-       php5-sqlite \
-       php5-intl \
-       php5-ldap \
-       php5-enchant \
-       php-pear \
-       php5-gd \
-       php-apc \
        aspell \
        aspell-en \
        aspell-fr \
        ca-certificates \
-			 curl \
-		&& curl -o roundcube.tar.gz -SL http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
+       curl \
+       php5-enchant \
+       php5-gd \
+       php5-intl \
+       php5-json \
+       php5-ldap \
+       php5-mcrypt \
+       php5-mysql \
+       php5-pgsql \
+       php5-sqlite \
+       php-apc \
+       php-gettext \
+       php-pear \
+		&& curl -o roundcube.tar.gz -SL https://github.com/roundcube/roundcubemail/releases/download/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
 		&& echo "$ROUNDCUBE_SHA256 *roundcube.tar.gz" | sha256sum -c - \
 		&& mkdir -p /var/www/roundcube_bootstrap /var/www/roundcube \
 		&& tar -xzf roundcube.tar.gz --strip 1 -C /var/www/roundcube_bootstrap \
-		&& apt-get remove -y --purge --auto-remove curl
+		&& apt-get remove -y --purge --auto-remove curl \
+    && rm roundcube.tar.gz \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add service directory to /container/service
 ADD service /container/service
 
-# Use baseimage install-service script and clean all
+# Use baseimage install-service script
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/install-service
-RUN /container/tool/install-service \
-		&& rm roundcube.tar.gz \
-		&& apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN /container/tool/install-service
 
 # Add default env variables
-ADD env.yaml /container/environment/env.yaml
+ADD environment /container/environment/99-default
 
 # Set wordpress data directory in a data volume
 VOLUME ["/var/www/roundcube"]
