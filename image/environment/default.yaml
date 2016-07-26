@@ -1,5 +1,6 @@
 # Apache
 ROUNDCUBE_SERVER_ADMIN: webmaster@example.org
+ROUNDCUBE_SERVER_PATH: /roundcube
 
 ROUNDCUBE_KEEP_INSTALLER: true
 

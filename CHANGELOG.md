@@ -1,8 +1,9 @@
 # Changelog
 
 ## 0.1.3
-  - Upgrade baseimage: web-baseimage:0.1.9
-  - roundcube 1.1.4
+  - Upgrade baseimage: web-baseimage:0.1.10
+  - roundcube 1.2
+  - Add ROUNDCUBE_SERVER_PATH environment variable
 
 ## 0.1.2
   - Upgrade baseimage: web-baseimage:0.1.7
