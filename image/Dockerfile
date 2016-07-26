@@ -44,7 +44,7 @@ RUN apt-get update \
        php-apc \
        php-gettext \
        php-pear \
-		&& curl -o roundcube.tar.gz -SL http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
+		&& curl -o roundcube.tar.gz -SL https://github.com/roundcube/roundcubemail/releases/download/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
 		&& echo "$ROUNDCUBE_SHA256 *roundcube.tar.gz" | sha256sum -c - \
 		&& mkdir -p /var/www/roundcube_bootstrap /var/www/roundcube \
 		&& tar -xzf roundcube.tar.gz --strip 1 -C /var/www/roundcube_bootstrap \
