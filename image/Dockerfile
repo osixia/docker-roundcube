@@ -25,7 +25,7 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db 
 # Download, check integrity and unzip roundcube to /var/www/roundcube_bootstrap
 RUN apt-get update \
 		&& /container/tool/add-multiple-process-stack \
-		&& /container/tool/add-service-available :apache2 :php5-fpm :cfssl \
+		&& /container/tool/add-service-available :apache2 :php5-fpm :ssl-tools \
 		&& LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
        aspell \
        aspell-en \
