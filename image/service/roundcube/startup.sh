@@ -32,7 +32,7 @@ fi
 a2ensite roundcube | log-helper debug
 
 # roundcube directory is empty, we use the bootstrap
-if [ ! "$(ls -A /var/www/roundcube)" ]; then
+if [ ! "$(ls -A -I lost+found /var/www/roundcube)" ]; then
 
   log-helper info "Use bootstrap"
   cp -R /var/www/roundcube_bootstrap/. /var/www/roundcube
