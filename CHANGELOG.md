@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+  - Upgrade baseimage: web-baseimage:0.1.11
+  - roundcube 1.2.1
+
 ## 0.1.3
   - Upgrade baseimage: web-baseimage:0.1.10
   - roundcube 1.2
