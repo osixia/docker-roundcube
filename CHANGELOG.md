@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2
+  - Image tag now follow roundcube version number
+  - roundcube 1.2.2
+
 ## 0.1.4
   - Upgrade baseimage: web-baseimage:0.1.11
   - roundcube 1.2.1
