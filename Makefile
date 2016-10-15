@@ -1,5 +1,5 @@
 NAME = osixia/roundcube
-VERSION = 0.1.4
+VERSION = 1.2.2
 
 all: build
 
