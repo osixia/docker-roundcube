@@ -1,0 +1,47 @@
+#!/bin/bash -e
+
+# Usage: /sbin/roundcube-backup
+backupPath="/data/backup"
+
+source /container/run/environment.sh
+
+# delete backups that are over $ROUNDCUBE_BACKUP_TTL days
+find $backupPath -type f -mtime +$ROUNDCUBE_BACKUP_TTL -exec rm {} \;
+
+# date format for the dump file name
+dateFileFormat="+%Y%m%dT%H%M%S"
+backupFilePath="$backupPath/$(date "$dateFileFormat")-roundcube.tar.gz"
+
+# save config and plugins except default ones
+tar -czf $backupFilePath -C / var/www/roundcube
+
+# backup database
+
+# get database name, user and password from configuration
+# /!\ configuration must use simple quote :)
+# and it's a bad idea to have : @ or / in your username, password and database name
+# $config['db_dsnw'] = 'mysql://roundcube:password@bdd.example.org/roundcubemail';
+connectionString=$(sed -n "s/\s*\$config\s*\[\s*'db_dsnw'\s*\]\s*=\s*'.*:\/\/\(.*\)'\s*;/\1/p" /var/www/roundcube/config/config.inc.php)
+host=$(echo $connectionString | sed "s/.*@//g" | sed "s/\/.*//g")
+databaseUser=$(echo $connectionString | sed -n "s/\(.*\):.*@.*/\1/p")
+databasePassword=$(echo $connectionString | sed -n "s/.*:\(.*\)@.*/\1/p")
+database=$(echo $connectionString | sed "s/?.*//g" | sed "s/.*\///g")
+key=$(echo $connectionString | sed "s/.*?.*key=//g" | sed "s/&.*//g")
+cert=$(echo $connectionString | sed "s/.*?.*cert=//g" | sed "s/&.*//g")
+
+databaseFile="database.sql"
+rm -rf $databaseFile || true
+
+# use ssl
+if [ -n "$cert" ] && [ -n "$key" ]; then
+  mysqldump -u $databaseUser -p$databasePassword --host $host --ssl --ssl-cert $cert --ssl-key $key $database > $databaseFile
+else
+  mysqldump -u $databaseUser -p$databasePassword --host $host $database > $databaseFile
+fi
+
+backupFilePath="$backupPath/$(date "$dateFileFormat")-roundcube-db.tar.gz"
+tar -czf $backupFilePath $databaseFile
+
+rm -rf $databaseFile
+
+exit 0

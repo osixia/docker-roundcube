@@ -32,6 +32,7 @@ RUN apt-get update \
        aspell-fr \
        ca-certificates \
        curl \
+       mariadb-client-$MARIADB_MAJOR \
        php5-enchant \
        php5-gd \
        php5-intl \
@@ -64,7 +65,7 @@ RUN /container/tool/install-service
 ADD environment /container/environment/99-default
 
 # Set wordpress data directory in a data volume
-VOLUME ["/var/www/roundcube"]
+VOLUME ["/var/www/roundcube", "/data/backup"]
 
 # Expose http and https default ports
 EXPOSE 80 443
