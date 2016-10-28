@@ -1,13 +1,10 @@
 #!/bin/bash -e
 
-# Usage: /sbin/roundcube-restore file
-file=$1
+# Usage: /sbin/roundcube-restore file [file] ...
 backupPath="/data/backup"
 backupFileSuffix="-roundcube.tar.gz"
 backupDbSuffix="-roundcube-db.tar.gz"
 databaseFile="database.sql"
-
-tar -xzf $backupPath/$file -C /
 
 for file in "$@"
 do
