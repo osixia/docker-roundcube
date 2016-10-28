@@ -17,6 +17,7 @@ backupFilePath="$backupPath/$(date "$dateFileFormat")$backupFileSuffix"
 
 # save config and plugins except default ones
 tar -czf $backupFilePath -C / var/www/roundcube
+chmod 600 $backupFilePath
 
 # backup database
 . /container/service/backup/assets/tool/roundcube-get-db-params
@@ -31,6 +32,7 @@ fi
 
 backupFilePath="$backupPath/$(date "$dateFileFormat")$backupDbSuffix"
 tar -czf $backupFilePath $databaseFile
+chmod 600 $backupFilePath
 
 rm -rf $databaseFile
 
