@@ -1,3 +1,6 @@
+ROUNDCUBE_BACKUP_CRON_EXP: 30 4 * * * #every day at 4:30am
+ROUNDCUBE_BACKUP_TTL: 15 # Delete backups that are over 15 days
+
 # Apache
 ROUNDCUBE_SERVER_ADMIN: webmaster@example.org
 ROUNDCUBE_SERVER_PATH: /roundcube

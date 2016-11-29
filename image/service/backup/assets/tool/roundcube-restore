@@ -1,0 +1,39 @@
+#!/bin/bash -e
+
+# Usage: /sbin/roundcube-restore file [file] ...
+backupPath="/data/backup"
+backupFileSuffix="-roundcube.tar.gz"
+backupDbSuffix="-roundcube-db.tar.gz"
+databaseFile="database.sql"
+
+for file in "$@"
+do
+    echo "Processing file $file"
+
+    if $(echo "$file" | grep -q -e "$backupFileSuffix"); then
+        echo "Restore roundcube files"
+        tar -xvzf $backupPath/$file -C /
+        echo "done :)"
+    elif $(echo "$file" | grep -q -e "$backupDbSuffix"); then
+        echo "Restore roundcube database"
+        . /container/service/backup/assets/tool/roundcube-get-db-params
+
+        rm -rf $databaseFile || true
+        tar -xvzf $backupPath/$file
+
+        # use ssl
+        if [ -n "$cert" ] && [ -n "$key" ]; then
+          mysql -u $databaseUser -p$databasePassword --host $host --ssl --ssl-cert $cert --ssl-key $key $database < $databaseFile
+        else
+          mysql -u $databaseUser -p$databasePassword --host $host $database < $databaseFile
+        fi
+
+        rm -rf $databaseFile
+
+        echo "done :)"
+    else
+      echo "Error: Unknown file type"
+    fi
+done
+
+exit 0
