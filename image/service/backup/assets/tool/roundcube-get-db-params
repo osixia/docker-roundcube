@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+# get database name, user and password from configuration
+# /!\ configuration must use simple quote :)
+# and it's a bad idea to have : @ or / in your username, password and database name
+# $config['db_dsnw'] = 'mysql://roundcube:password@bdd.example.org/roundcubemail';
+connectionString=$(sed -n "s/\s*\$config\s*\[\s*'db_dsnw'\s*\]\s*=\s*'.*:\/\/\(.*\)'\s*;/\1/p" /var/www/roundcube/config/config.inc.php)
+host=$(echo $connectionString | sed "s/.*@//g" | sed "s/\/.*//g")
+databaseUser=$(echo $connectionString | sed -n "s/\(.*\):.*@.*/\1/p")
+databasePassword=$(echo $connectionString | sed -n "s/.*:\(.*\)@.*/\1/p")
+database=$(echo $connectionString | sed "s/?.*//g" | sed "s/.*\///g")
+key=$(echo $connectionString | sed -n "s/.*?.*key=\(.*\)/\1/p" | sed "s/&.*//g")
+cert=$(echo $connectionString | sed -n "s/.*?.*cert=\(.*\)/\1/p" | sed "s/&.*//g")

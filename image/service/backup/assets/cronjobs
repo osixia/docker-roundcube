@@ -1,0 +1,3 @@
+# Backup mail directory
+{{ ROUNDCUBE_BACKUP_CRON_EXP }} root /sbin/roundcube-backup 2>&1 | /usr/bin/logger -s -t roundcube-backup
+# empty line

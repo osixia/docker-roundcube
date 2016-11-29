@@ -1,9 +1,9 @@
-FROM osixia/web-baseimage:0.1.11
+FROM osixia/web-baseimage:0.1.12
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # roundcube version
-ENV ROUNDCUBE_VERSION 1.2.2
-ENV ROUNDCUBE_SHA256 b919e797b8bf5ed34748d067dc281f45f29ad71dbad8904bdc0e2258912666ef
+ENV ROUNDCUBE_VERSION 1.2.3
+ENV ROUNDCUBE_SHA256 d7f1d041557639c442691a1e5fa791ab77aa97327a0d328a22e0220f3cb2ca97
 
 # MariaDB version
 ENV MARIADB_MAJOR 10.1
@@ -32,6 +32,7 @@ RUN apt-get update \
        aspell-fr \
        ca-certificates \
        curl \
+       mariadb-client-$MARIADB_MAJOR \
        php5-enchant \
        php5-gd \
        php5-intl \
@@ -64,7 +65,7 @@ RUN /container/tool/install-service
 ADD environment /container/environment/99-default
 
 # Set wordpress data directory in a data volume
-VOLUME ["/var/www/roundcube"]
+VOLUME ["/var/www/roundcube", "/data/backup"]
 
 # Expose http and https default ports
 EXPOSE 80 443
