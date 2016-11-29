@@ -3,6 +3,7 @@
 ## 1.2.3
   - roundcube 1.2.3
   - now backup database too
+  - Upgrade baseimage: web-baseimage:0.1.12
 
 ## 1.2.2
   - Image tag now follow roundcube version number
