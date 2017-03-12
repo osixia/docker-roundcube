@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.4
+  - roundcube 1.2.4
+  - Upgrade baseimage: web-baseimage:1.0.0
+
 ## 1.2.3
   - roundcube 1.2.3
   - now backup database too
