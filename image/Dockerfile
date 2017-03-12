@@ -1,9 +1,9 @@
-FROM osixia/web-baseimage:0.1.12
+FROM osixia/web-baseimage:1.0.0
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # roundcube version
-ENV ROUNDCUBE_VERSION 1.2.3
-ENV ROUNDCUBE_SHA256 d7f1d041557639c442691a1e5fa791ab77aa97327a0d328a22e0220f3cb2ca97
+ENV ROUNDCUBE_VERSION 1.2.4
+ENV ROUNDCUBE_SHA256 6042f072fee95da27ab9f86f1f57378b463866747d6d77036ff1babb6764698d
 
 # MariaDB version
 ENV MARIADB_MAJOR 10.1
