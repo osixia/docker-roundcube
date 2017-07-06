@@ -120,9 +120,6 @@ $config['smtp_conn_options'] = array(
   );
 */
 
-// default setting if preview pane is enabled
-$config['preview_pane'] = true;
-
 // compose html formatted messages by default
 // 0 - never, 1 - always, 2 - on reply to HTML message, 3 - on forward or reply to HTML message
 $config['htmleditor'] = 3;
