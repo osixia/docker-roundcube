@@ -5,7 +5,7 @@
 [![](https://images.microbadger.com/badges/image/osixia/roundcube.svg)](http://microbadger.com/images/osixia/roundcube "Get your own image badge on microbadger.com")
 [hub]: https://hub.docker.com/r/osixia/roundcube/
 
-Latest release: 1.2.5 - roundcube 1.2.5 -  [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/roundcube/) 
+Latest release: 1.3.0 - roundcube 1.2.5 -  [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/roundcube/) 
 
 **A docker image to run roundcube.**
 
