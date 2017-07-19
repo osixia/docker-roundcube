@@ -45,8 +45,8 @@ fi
 
 # if there is no config file link service config
 if [ ! -e "/var/www/roundcube/config/config.inc.php" ]; then
-  log-helper debug "link ${CONTAINER_SERVICE_DIR}/roundcube/assets/config.inc.php to /var/www/roundcube/config/config.inc.php"
-  ln -sf ${CONTAINER_SERVICE_DIR}/roundcube/assets/config.inc.php /var/www/roundcube/config/config.inc.php
+  log-helper debug "link ${CONTAINER_SERVICE_DIR}/roundcube/assets/config/config.inc.php to /var/www/roundcube/config/config.inc.php"
+  ln -sf ${CONTAINER_SERVICE_DIR}/roundcube/assets/config/config.inc.php /var/www/roundcube/config/config.inc.php
 fi
 
 log-helper info "ROUNDCUBE_KEEP_INSTALLER=$ROUNDCUBE_KEEP_INSTALLER"
@@ -60,6 +60,6 @@ fi
 find /var/www/ -type d -exec chmod 755 {} \;
 find /var/www/ -type f -exec chmod 644 {} \;
 chown www-data:www-data -R /var/www
-chown www-data:www-data ${CONTAINER_SERVICE_DIR}/roundcube/assets/config.inc.php
+chown www-data:www-data ${CONTAINER_SERVICE_DIR}/roundcube/assets/config/config.inc.php
 
 exit 0
