@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.1
+  - roundcube 1.3.1
+
 ## 1.3.0-1
   - Optimise apache config
   - Add opcache config
