@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0-1
+  - Optimise apache config
+  - Add opcache config
+
 ## 1.3.0
   - roundcube 1.3.0
   - Upgrade baseimage: web-baseimage:1.1.0 (debian stretch, php7)
