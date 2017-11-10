@@ -16,3 +16,6 @@ rm -rf /var/www/html
 
 # Add apache modules
 a2enmod deflate expires
+
+# copy robots.txt
+cp -f /container/service/roundcube/assets/robots.txt /var/www/roundcube_bootstrap/robots.txt

@@ -4,7 +4,7 @@
 ![Docker Stars](https://img.shields.io/docker/stars/osixia/roundcube.svg)
 ![](https://images.microbadger.com/badges/image/osixia/roundcube.svg)
 
-Latest release: 1.3.2 - roundcube 1.3.2 -  [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/roundcube/) 
+Latest release: 1.3.3 - roundcube 1.3.3 -  [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/roundcube/) 
 
 **A docker image to run roundcube.**
 
