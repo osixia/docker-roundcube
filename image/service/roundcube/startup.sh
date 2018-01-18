@@ -43,7 +43,8 @@ fi
 rm -rf /var/www/roundcube_bootstrap
 
 # add skins and plugins
-cp --remove-destination -Rf ${CONTAINER_SERVICE_DIR}/roundcube/assets/bootstrap/. /var/www/roundcube
+cp --remove-destination -Rf ${CONTAINER_SERVICE_DIR}/roundcube/assets/plugins/. /var/www/roundcube/plugins
+cp --remove-destination -Rf ${CONTAINER_SERVICE_DIR}/roundcube/assets/skins/. /var/www/roundcube/skins
 
 # if there is no config file link service config
 if [ ! -e "/var/www/roundcube/config/config.inc.php" ]; then
