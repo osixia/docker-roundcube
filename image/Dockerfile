@@ -2,8 +2,8 @@ FROM osixia/web-baseimage:1.1.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # roundcube version
-ARG ROUNDCUBE_VERSION=1.3.3
-ARG ROUNDCUBE_SHA256=05d9856c966c0d93accabf724e7ff2fd493bba1a57c44247ed0a2aacd617c879
+ARG ROUNDCUBE_VERSION=1.3.4
+ARG ROUNDCUBE_SHA256=bde95a620f0f5670450d3b94e093c30a4bdf2717183fcc92c8018019ad66c556
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.2
@@ -64,7 +64,7 @@ RUN /container/tool/install-service
 # Add default env variables
 ADD environment /container/environment/99-default
 
-# Set wordpress data directory in a data volume
+# Set roundcube data directory in a data volume
 VOLUME ["/var/www/roundcube", "/data/backup"]
 
 # Expose http and https default ports
