@@ -36,12 +36,14 @@ if [ ! "$(ls -A -I lost+found /var/www/roundcube)" ]; then
 
   log-helper info "Use bootstrap"
   cp -R /var/www/roundcube_bootstrap/. /var/www/roundcube
-  rm -rf /var/www/roundcube_bootstrap
-
-  # add skins and plugins
-  cp -R ${CONTAINER_SERVICE_DIR}/roundcube/assets/bootstrap/. /var/www/roundcube
 
 fi
+
+# remove bootstrap directory
+rm -rf /var/www/roundcube_bootstrap
+
+# add skins and plugins
+cp --remove-destination -Rf ${CONTAINER_SERVICE_DIR}/roundcube/assets/bootstrap/. /var/www/roundcube
 
 # if there is no config file link service config
 if [ ! -e "/var/www/roundcube/config/config.inc.php" ]; then
