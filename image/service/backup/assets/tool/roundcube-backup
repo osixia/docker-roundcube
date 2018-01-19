@@ -15,7 +15,7 @@ find $backupPath -type f -mtime +$ROUNDCUBE_BACKUP_TTL -exec rm {} \;
 dateFileFormat="+%Y%m%dT%H%M%S"
 backupFilePath="$backupPath/$(date "$dateFileFormat")$backupFileSuffix"
 
-# save config and plugins except default ones
+# save roundcube files
 tar -czf $backupFilePath -C / var/www/roundcube
 chmod 600 $backupFilePath
 
