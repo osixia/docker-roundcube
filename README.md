@@ -9,3 +9,17 @@ Latest release: 1.3.4 - roundcube 1.3.4 -  [Changelog](CHANGELOG.md) | [Docker H
 **A docker image to run roundcube.**
 
 > roundcube website : [roundcube.net](https://roundcube.net/)
+
+### Under the hood: osixia/web-baseimage
+
+This image is based on osixia/web-baseimage.
+More info: https://github.com/osixia/docker-web-baseimage
+
+## Security
+If you discover a security vulnerability within this docker image, please send an email to the Osixia! team at security@osixia.net. For minor vulnerabilities feel free to add an issue here on github.
+
+Please include as many details as possible.
+
+## Changelog
+
+Please refer to: [CHANGELOG.md](CHANGELOG.md)
