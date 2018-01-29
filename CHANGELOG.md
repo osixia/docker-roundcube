@@ -1,55 +1,83 @@
 # Changelog
+All notable changes to this project will be documented in this file.
 
-## 1.3.3
-  - roundcube 1.3.3
-  - Add robots.txt 
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project follows roundcube versioning.
 
-## 1.3.2
-  - roundcube 1.3.2
-  - Upgrade baseimage: web-baseimage:1.1.1
+## [1.3.4] - 2018-01-19
+### Changed
+  - Upgrade roundcube version to 1.3.4
 
-## 1.3.1
-  - roundcube 1.3.1
+## [1.3.3] - 2017-11-10
+### Added
+  - robots.txt
 
-## 1.3.0-1
-  - Optimise apache config
+### Changed
+  - Upgrade roundcube version to 1.3.3
+
+## [1.3.2] - 2017-11-06
+### Changed
+  - Upgrade roundcube version to 1.3.2
+  - Upgrade baseimage to web-baseimage:1.1.1
+
+## [1.3.1] - 2017-09-07
+### Changed
+  - Upgrade roundcube version to 1.3.1
+
+## [1.3.0-1] - 2017-09-07
+### Added
   - Add opcache config
 
-## 1.3.0
-  - roundcube 1.3.0
-  - Upgrade baseimage: web-baseimage:1.1.0 (debian stretch, php7)
+### Changed
+  - Optimise apache config
 
-## 1.2.5
-  - roundcube 1.2.5
+## [1.3.0] - 2017-07-19
+### Changed
+  - Upgrade roundcube version to 1.3.0
+  - Upgrade baseimage to web-baseimage:1.1.0 (debian stretch, php7)
 
-## 1.2.4
-  - roundcube 1.2.4
-  - Upgrade baseimage: web-baseimage:1.0.0
+## [1.2.5] - 2017-05-09
+### Changed
+  - Upgrade roundcube version to 1.2.5
 
-## 1.2.3
-  - roundcube 1.2.3
+## [1.2.4] - 2017-03-12
+### Changed
+  - Upgrade roundcube version to 1.2.4
+  - Upgrade baseimage to web-baseimage:1.0.0
+
+## [1.2.3] - 2016-11-29
+### Changed
+  - Upgrade roundcube version to 1.2.3
   - now backup database too
-  - Upgrade baseimage: web-baseimage:0.1.12
+  - Upgrade baseimage to web-baseimage:0.1.12
 
-## 1.2.2
-  - Image tag now follow roundcube version number
-  - roundcube 1.2.2
+## [1.2.2] - 2016-10-15
+### Changed
+  - Upgrade roundcube version to 1.2.2
 
-## 0.1.4
-  - Upgrade baseimage: web-baseimage:0.1.11
-  - roundcube 1.2.1
+## Versions before following the roundcube versioning
 
-## 0.1.3
-  - Upgrade baseimage: web-baseimage:0.1.10
-  - roundcube 1.2
-  - Add ROUNDCUBE_SERVER_PATH environment variable
+## [0.1.4] - 2016-09-02
+### Changed
+  - Upgrade baseimage to web-baseimage:0.1.11
+  - Upgrade roundcube version to 1.2.1
 
-## 0.1.2
-  - Upgrade baseimage: web-baseimage:0.1.7
+## [0.1.3] - 2016-07-26
+### Added
+  - ROUNDCUBE_SERVER_PATH environment variable
+
+### Changed
+  - Upgrade baseimage to web-baseimage:0.1.10
+  - Upgrade roundcube version to 1.2
+
+## [0.1.2] - 2015-12-16
+### Changed
+  - Upgrade baseimage to web-baseimage:0.1.7
   - Makefile with build no cache
 
-## 0.1.1
+## [0.1.1] - 2015-12-08
+### Added
   - More complete example config.inc.php
 
-## 0.1.0
-  - Initial release
+## [0.1.0] - 2015-12-07
+Initial release
