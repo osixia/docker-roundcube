@@ -63,6 +63,6 @@ fi
 find /var/www/ -type d -exec chmod 755 {} \;
 find /var/www/ -type f -exec chmod 644 {} \;
 chown www-data:www-data -R /var/www
-chown www-data:www-data ${CONTAINER_SERVICE_DIR}/roundcube/assets/config/config.inc.php
+chown www-data:www-data ${CONTAINER_SERVICE_DIR}/roundcube/assets/config/config.inc.php || true
 
 exit 0
