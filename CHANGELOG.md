@@ -94,7 +94,6 @@ and this project follows roundcube versioning.
 ## 0.1.0 - 2015-12-07
 Initial release
 
-[1.3.7]: https://github.com/osixia/docker-roundcube/compare/v1.3.6...v1.3.7
 [1.3.6]: https://github.com/osixia/docker-roundcube/compare/v1.3.5...v1.3.6
 [1.3.5]: https://github.com/osixia/docker-roundcube/compare/v1.3.4...v1.3.5
 [1.3.4]: https://github.com/osixia/docker-roundcube/compare/v1.3.3...v1.3.4
