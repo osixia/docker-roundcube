@@ -1,5 +1,5 @@
 NAME = osixia/roundcube
-VERSION = 1.3.6
+VERSION = 1.3.7
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version
 

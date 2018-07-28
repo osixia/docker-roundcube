@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project follows roundcube versioning.
 
-## [1.3.6] - 2018-04-23
+## [1.3.7] - 2018-07-28
+### Changed
+  - Upgrade roundcube version to 1.3.7
+
+## [1.3.6] - 2018-03-16
 ### Changed
   - Upgrade roundcube version to 1.3.6
 

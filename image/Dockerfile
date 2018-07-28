@@ -1,12 +1,11 @@
 FROM osixia/web-baseimage:1.1.1
-MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # roundcube version
-ARG ROUNDCUBE_VERSION=1.3.6
-ARG ROUNDCUBE_SHA256=f1b86e97cc8fd69bb1957d4115762af6ea2d6957ea17b33dd3ec2995662670d9
+ARG ROUNDCUBE_VERSION=1.3.7
+ARG ROUNDCUBE_SHA256=fb274b3384c69a259538588c49ee4795b3dc3fde8b2fe30325cfa6079b5ee875
 
 # MariaDB version
-ARG MARIADB_MAJOR=10.2
+ARG MARIADB_MAJOR=10.3
 
 # Install apache2 and php7.0-fpm using osixia/baseimage utils
 # Caution: /container/tool/install-service-available arguments order is important
