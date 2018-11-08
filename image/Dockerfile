@@ -1,8 +1,8 @@
 FROM osixia/web-baseimage:1.1.1
 
 # roundcube version
-ARG ROUNDCUBE_VERSION=1.3.7
-ARG ROUNDCUBE_SHA256=fb274b3384c69a259538588c49ee4795b3dc3fde8b2fe30325cfa6079b5ee875
+ARG ROUNDCUBE_VERSION=1.3.8
+ARG ROUNDCUBE_SHA256=c49e33f9643f98311b700138a1e1a0358c37b1205250e1124bd43d7f9a920d05
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.3
@@ -45,7 +45,7 @@ RUN apt-get update \
        php-gettext \
        php-pear \
 		&& curl -o roundcube.tar.gz -SL https://github.com/roundcube/roundcubemail/releases/download/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
-		&& echo "$ROUNDCUBE_SHA256 *roundcube.tar.gz" | sha256sum -c - \
+		&& echo "${ROUNDCUBE_SHA256} *roundcube.tar.gz" | sha256sum -c - \
 		&& mkdir -p /var/www/roundcube_bootstrap /var/www/roundcube \
 		&& tar -xzf roundcube.tar.gz --strip 1 -C /var/www/roundcube_bootstrap \
 		&& apt-get remove -y --purge --auto-remove curl \
