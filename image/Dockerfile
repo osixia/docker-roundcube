@@ -1,4 +1,4 @@
-FROM osixia/web-baseimage:1.1.2
+FROM osixia/web-baseimage:1.2.0
 
 # roundcube version
 ARG ROUNDCUBE_VERSION=1.3.9
@@ -7,9 +7,9 @@ ARG ROUNDCUBE_SHA256=726db4ffb33a7154dd432cbb99810ab9d02512c7f1987a6119e9ac7f595
 # MariaDB version
 ARG MARIADB_MAJOR=10.3
 
-# Install apache2 and php7.0-fpm using osixia/baseimage utils
+# Install apache2 and php7.3-fpm using osixia/baseimage utils
 # Caution: /container/tool/install-service-available arguments order is important
-# php7.0-fpm install will detect apache2 and configure it
+# php7.3-fpm install will detect apache2 and configure it
 
 # Add MariaDB repository
 RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
@@ -24,7 +24,7 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 
 # Download, check integrity and unzip roundcube to /var/www/roundcube_bootstrap
 RUN apt-get update \
   && /container/tool/add-multiple-process-stack \
-  && /container/tool/add-service-available :apache2 :php7.0-fpm :ssl-tools \
+  && /container/tool/add-service-available :apache2 :php7.3-fpm :ssl-tools \
   && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   aspell \
   aspell-en \
@@ -32,18 +32,18 @@ RUN apt-get update \
   ca-certificates \
   curl \
   mariadb-client-$MARIADB_MAJOR \
-  php7.0-enchant \
-  php7.0-gd \
-  php7.0-intl \
-  php7.0-json \
-  php7.0-ldap \
-  php7.0-mcrypt \
-  php7.0-mysql \
-  php7.0-pgsql \
-  php7.0-sqlite3 \
+  php-enchant \
+  php-gd \
+  php-intl \
+  php-json \
+  php-ldap \
+  php-mysql \
+  php-pgsql \
+  php-sqlite3 \
   php-apcu \
   php-gettext \
   php-pear \
+  php-zip \
   && curl -o roundcube.tar.gz -SL https://github.com/roundcube/roundcubemail/releases/download/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
   && echo "${ROUNDCUBE_SHA256} *roundcube.tar.gz" | sha256sum -c - \
   && mkdir -p /var/www/roundcube_bootstrap /var/www/roundcube \
