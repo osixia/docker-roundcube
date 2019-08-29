@@ -6,7 +6,7 @@ and this project follows roundcube versioning.
 
 ## [1.3.10] - 2018-08-29
 ### Changed
-  - Upgrade roundcube version to 1.3.8
+  - Upgrade roundcube version to 1.3.10
   - Upgrade baseimage to web-baseimage:1.2.0
 
 ## [1.3.9] - 2018-04-05
