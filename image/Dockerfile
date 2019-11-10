@@ -1,26 +1,12 @@
-FROM osixia/web-baseimage:1.2.0
+FROM osixia/web-baseimage:release-1.2.0-dev
 
 # roundcube version
-ARG ROUNDCUBE_VERSION=1.3.10
-ARG ROUNDCUBE_SHA256=69fe11550a0f5711020ecd55c6ad36394580800a68d43bb69ecedc91f36ba8bf
-
-# MariaDB version
-ARG MARIADB_MAJOR=10.3
+ARG ROUNDCUBE_VERSION=1.4.0
+ARG ROUNDCUBE_SHA256=6bd2a2ac05d6575c290c784e1267090550c56c92f65b66f0b155832fc860ef2c
 
 # Install apache2 and php7.3-fpm using osixia/baseimage utils
 # Caution: /container/tool/install-service-available arguments order is important
 # php7.3-fpm install will detect apache2 and configure it
-
-# Add MariaDB repository
-RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
-  && echo "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/$MARIADB_MAJOR/debian stretch main" > /etc/apt/sources.list.d/mariadb.list \
-  && { \
-  echo 'Package: *'; \
-  echo 'Pin: release o=MariaDB'; \
-  echo 'Pin-Priority: 999'; \
-  } > /etc/apt/preferences.d/mariadb
-
-
 # Download, check integrity and unzip roundcube to /var/www/roundcube_bootstrap
 RUN apt-get update \
   && /container/tool/add-multiple-process-stack \
@@ -31,7 +17,7 @@ RUN apt-get update \
   aspell-fr \
   ca-certificates \
   curl \
-  mariadb-client-$MARIADB_MAJOR \
+  mariadb-client \
   php-enchant \
   php-gd \
   php-intl \
