@@ -4,12 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project follows roundcube versioning.
 
-## [1.3.10] - 2018-08-29
+## [1.4.0] - 2019-11-10
+## Added
+  - Multiarch support
+
+### Changed
+  - Upgrade roundcube version to 1.4.0
+
+## [1.3.10] - 2019-08-29
 ### Changed
   - Upgrade roundcube version to 1.3.10
   - Upgrade baseimage to web-baseimage:1.2.0
 
-## [1.3.9] - 2018-04-05
+## [1.3.9] - 2019-04-07
 ### Changed
   - Upgrade roundcube version to 1.3.9
   - Upgrade baseimage to web-baseimage:1.1.2
@@ -17,7 +24,7 @@ and this project follows roundcube versioning.
 ### Fixed
   - Cron log with /usr/bin/logger
 
-## [1.3.8] - 2018-11-08
+## [1.3.8] - 2019-04-07
 ### Changed
   - Upgrade roundcube version to 1.3.8
 
@@ -111,6 +118,8 @@ and this project follows roundcube versioning.
 ## 0.1.0 - 2015-12-07
 Initial release
 
+[1.4.0]: https://github.com/osixia/docker-roundcube/compare/v1.3.10...v1.4.0
+[1.3.10]: https://github.com/osixia/docker-roundcube/compare/v1.3.9...v1.3.10
 [1.3.9]: https://github.com/osixia/docker-roundcube/compare/v1.3.8...v1.3.9
 [1.3.8]: https://github.com/osixia/docker-roundcube/compare/v1.3.7...v1.3.8
 [1.3.7]: https://github.com/osixia/docker-roundcube/compare/v1.3.6...v1.3.7
