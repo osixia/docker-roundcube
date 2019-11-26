@@ -1,8 +1,8 @@
 FROM osixia/web-baseimage:release-1.2.0-dev
 
 # roundcube version
-ARG ROUNDCUBE_VERSION=1.4.0
-ARG ROUNDCUBE_SHA256=6bd2a2ac05d6575c290c784e1267090550c56c92f65b66f0b155832fc860ef2c
+ARG ROUNDCUBE_VERSION=1.4.1
+ARG ROUNDCUBE_SHA256=640423d21e1aa733ddea7462f156e194b051f086a3f2a70430e0aa2c9b09b44a
 
 # Install apache2 and php7.3-fpm using osixia/baseimage utils
 # Caution: /container/tool/install-service-available arguments order is important
